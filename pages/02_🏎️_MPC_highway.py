@@ -305,14 +305,14 @@ if __name__=="__main__":
             animation = sim_run(options, ModelPredictiveControl, horizon, goal, speed_limit)
             end_time = time.process_time()
             st.subheader("Simulation of Model Predictive Controller on a highway")
-            animjs = animation.to_jshtml()
+            animjs = animation.to_jshtml() 
             
-            ## JS line to find the play button and click on it
+            ## JS line to find the play button and click on it 
             click_on_play = """document.querySelector('.anim-buttons button[title="Play"]').click();""" 
             ## Search for the creation of the animation within the jshtml file created by matplotlib
             pattern = re.compile(r"(setTimeout.*?;)(.*?})", re.MULTILINE | re.DOTALL) 
             ## Insert the JS line right below that
-            new_animjs = pattern.sub(rf"\1 \n {click_on_play} \2", animjs)
+            new_animjs = pattern.sub(rf"\1 \n {click_on_play} \2", animjs) 
             
             
             components.html(new_animjs, height=700) # height=800  
