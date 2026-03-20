@@ -1,3 +1,14 @@
 .DS_Store
 *.key
 *.pem
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+.venv/
+
+.vscode/
+.idea/

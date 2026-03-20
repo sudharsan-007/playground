@@ -1,0 +1,13 @@
+[project]
+name = "playground-streamlit"
+version = "0.1.0"
+description = "Interactive Streamlit playground for Model Predictive Control simulations"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "streamlit",
+    "numpy",
+    "matplotlib",
+    "scipy",
+]
