@@ -24,7 +24,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 
 # Run the app
-uv run streamlit run "01_🧩_Playgorund.py" --server.port=8002
+uv run streamlit run "01_🧩_Playground.py" --server.port=8002
 ```
 
 The app will be available at `http://localhost:8002`.

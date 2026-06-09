@@ -1,26 +1,16 @@
-# app/Dockerfile
+FROM python:3.12-slim
 
-FROM python:3.9-slim
+WORKDIR /app
 
-# WORKDIR /app
+# Install dependencies first so they're cached when only app code changes.
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    software-properties-common \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
-# COPY . /app
-
-WORKDIR /app 
-
-RUN git clone https://github.com/sudharsan-007/playground . 
-
-RUN pip3 install -r requirements.txt
+# Copy the local source (do not git clone at build time).
+COPY . .
 
 EXPOSE 8002
 
-# HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8002/_stcore/health')" || exit 1
 
-ENTRYPOINT ["streamlit", "run", "01_🧩_Playgorund.py", "--server.port=8002", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "01_🧩_Playground.py", "--server.port=8002", "--server.address=0.0.0.0"]
